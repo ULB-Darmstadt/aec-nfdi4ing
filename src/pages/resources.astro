@@ -1,0 +1,37 @@
+---
+import PageIntro from '../components/PageIntro.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Resources | AEC at NFDI4Ing">
+  <PageIntro
+    eyebrow="Resources"
+    title="Selected resources and references"
+    text="A compact collection of relevant material for research data management in architecture, engineering, and construction."
+  />
+
+  <section class="section section-soft">
+    <div class="container card-grid">
+      <article class="card">
+        <h2>Downloads</h2>
+        <p>
+          Reports, factsheets, and working documents can be made available here.
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>External links</h2>
+        <p>
+          Repositories, documentation, and related institutional pages can be linked directly.
+        </p>
+      </article>
+
+      <article class="card">
+        <h2>Curated highlights</h2>
+        <p>
+          A focused set of references keeps the section readable and maintainable.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

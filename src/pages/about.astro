@@ -1,0 +1,36 @@
+---
+import PageIntro from '../components/PageIntro.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About | AEC at NFDI4Ing">
+  <PageIntro
+    eyebrow="About"
+    title="About the initiative"
+    text="AEC in NFDI4Ing brings together research data management perspectives from architecture, engineering, and construction within the wider NFDI4Ing landscape."
+  />
+
+  <section class="section">
+    <div class="container prose-grid">
+      <div class="narrow-flow">
+        <h2>Scope and orientation</h2>
+        <p>
+          The initiative supports exchange, orientation, and coordination around data practices,
+          methods, and infrastructure needs for the built environment.
+        </p>
+        <p>
+          It connects disciplinary perspectives with national infrastructure development and helps
+          position AEC-related requirements within broader research data ecosystems.
+        </p>
+      </div>
+
+      <aside class="note-box">
+        <p class="eyebrow">Context</p>
+        <p>
+          This page can later be extended with partner information, project framing, and selected
+          background material.
+        </p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,33 @@
+---
+import PageIntro from '../components/PageIntro.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact | AEC at NFDI4Ing">
+  <PageIntro
+    eyebrow="Contact"
+    title="Get in touch"
+    text="A direct route for enquiries, coordination, and exchange related to AEC in NFDI4Ing."
+  />
+
+  <section class="section">
+    <div class="container prose-grid">
+      <div class="narrow-flow">
+        <h2>Contact details</h2>
+        <p>
+          Roger Winkler is the current contact for questions, exchange, and coordination.
+        </p>
+        <p>
+          Please use the direct email route for the current version of the site.
+        </p>
+      </div>
+
+      <aside class="note-box">
+        <p class="eyebrow">Email</p>
+        <p>
+          <a href="mailto:roger.winkler@tu-darmstadt.de">roger.winkler@tu-darmstadt.de</a>
+        </p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
