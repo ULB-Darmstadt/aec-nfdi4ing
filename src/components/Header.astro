@@ -1,11 +1,25 @@
+---
+import { navigation } from '../config/site';
+---
+
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label="AEC at NFDI4Ing home">
+    <a class="brand" href="https://nfdi4ing.de/" aria-label="Visit the NFDI4ING website">
       <img
         class="brand-logo"
-        src="/assets/logos/aec-nfdi4ing-logo.svg"
-        alt="AEC in NFDI4Ing"
+        src="/assets/logos/nfdi4ing_logo.svg"
+        alt="NFDI4ING"
       />
     </a>
+
+    <nav class="site-nav" aria-label="Section navigation">
+      <ul>
+        {navigation.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </div>
 </header>

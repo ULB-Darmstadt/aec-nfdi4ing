@@ -1,26 +1,479 @@
 ---
+import { ACTION_ERROR_CODES } from "astro:actions";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const awesomeCollectionHref = "#";
+const podcastEpisodeHref = "https://shows.acast.com/nfdi-podcast-for-a-fair-data-future/episodes/datenmanagement-in-der-gebauten-umwelt";
+const serviceLogo = "/assets/logos/nfdi_only_logo.svg";
+
+const consortia = [
+    {
+        name: "NFDI4ING",
+        image: "/assets/logos/nfdi4ing_logo.svg",
+        href: "https://nfdi4ing.de/"
+    },
+    {
+        name: "NFDI4Culture",
+        image: "/assets/logos/NFDI4Culture_logo.png",
+        href: "https://nfdi4culture.de/"
+    },
+    {
+        name: "NFDI4Objects",
+        image: "/assets/logos/NFDI4OBJECTS_logo.svg",
+        href: "https://www.nfdi4objects.net/"
+    },
+    {
+        name: "NFDI4EARTH",
+        image: "/assets/logos/nfdi4earth_logo.webp",
+        href: "https://www.nfdi4earth.de/",
+        hidden: true
+    }
+];
+
+const focusAreas = [
+    {
+        title: "From research situations",
+        text: "Starting with actual research practices: how data is collected, interpreted, classified, structured, documented, and prepared for publication, dissemination and reuse."
+    },
+    {
+        title: "Through shared discussion",
+        text: "Bringing together researchers, infrastructure providers, developers, and community initiatives into exchange around recurring needs and open questions."
+    },
+    {
+        title: "Towards sustainable infrastructure",
+        text: "Connecting requirements from AEC-related research with NFDI services, metadata approaches, repositories, software practices, and publication workflows."
+    }
+];
+
+const activities = [
+    {
+        title: "Requirements and use cases",
+        text: "Requirements from AEC-related research are collected, discussed, and translated into recommendations for infrastructure services, metadata services, repositories, and publication workflows."
+    },
+    {
+        title: "Metadata and documentation",
+        text: "The development, use, and evaluation of metadata profiles, documentation strategies, and data description practices are supported in order to make research work understandable and reusable."
+    },
+    {
+        title: "Open workflows and research software",
+        text: "Open science, open source, and research software practices in the AEC field are discussed with attention to tools, standards, services, and workflows for collaborative research."
+    },
+    {
+        title: "Training and exchange",
+        text: "Summer schools, online talks, workshops, discussion events, and meetings are organised to connect conceptual discussion, method development, technical exchange, and practical training."
+    }
+];
+
+const services = [
+    {
+        title: "Research Data Management Organiser",
+        text: "Support for planning and documenting research data management processes, including data management plans, project-specific requirements, responsibilities, data types, standards, and publication strategies.",
+        href: "https://rdmo.nfdi4ing.de/",
+        label: "RDMO"
+    },
+    {
+        title: "JupyterHub",
+        text: "Access to computational environments for data processing, analysis, documentation, and reproducible workflows. JupyterHub supports research scenarios in which scripts, notebooks, datasets, and methods need to be developed and shared transparently.",
+        href: "https://jupyter.nfdi4ing.de/",
+        label: "JupyterHub"
+    },
+    {
+        title: "Data Ingest Services",
+        text: "Support for handling large and complex datasets in architecture and engineering. INGEST helps researchers prepare datasets for publication and reuse through web-based 2D and 3D visual previews, persistent identifiers such as DOIs, domain-specific metadata, and long-term archiving in accordance with FAIR principles.",
+        href: "https://ingest.nfdi4ing.de/",
+        label: "INGEST"
+    }
+];
+
+const coordinators = [
+    {
+        name: "Prof. Dr. Jakob Beetz",
+        role: "Co-Spokesperson in NFDI4ING",
+        affiliation: "Chair for Design Computation, RWTH Aachen University",
+        image: "/assets/people/beetz.webp"
+    },
+    {
+        name: "Dr. Jyrki Oraskari",
+        role: "Research",
+        affiliation: "Chair for Design Computation, RWTH Aachen University",
+        image: "/assets/people/Oraskari.jpg"
+    },
+    {
+        name: "Dr. Andreas Noback",
+        role: "Infrastructure",
+        affiliation: "NFDI4ING, Technical University of Darmstadt",
+        image: "/assets/people/Noback.jpg"
+    },
+    {
+        name: "Roger Winkler",
+        role: "Infrastructure",
+        affiliation: "University and State Library Darmstadt, Technical University of Darmstadt",
+        image: "/assets/people/Winkler.png"
+    },
+    {
+        name: "Hana Svatos-Raznjevic",
+        role: "Research",
+        affiliation: "Institute for Computational Design and Construction, University of Stuttgart",
+        image: "/assets/people/Svatos.jpg"
+    }
+];
+
+const events = [
+    {
+        date: "July 2026",
+        title: "Summer School ALEX",
+        description: "Short event description coming soon.",
+        status: "Registration closed",
+        statusTone: "muted",
+        href: "https://nfdi4ing.de/a-summer-school26-2/",
+        label: "Visit"
+    },
+    {
+        date: "August 2026",
+        title: "Summer School ELLEN",
+        description: "Short event description coming soon.",
+        status: "Upcoming",
+        statusTone: "upcoming",
+        note: "Coming soon..."
+    },
+    {
+        date: "August 2026",
+        title: "Cross-NFDI Event Bauwerksnormdaten",
+        description: "Short event description coming soon.",
+        status: "Open registration",
+        statusTone: "active",
+        href: "https://reg.nfdi4objects.net/N4O/Bau-Norm/",
+        label: "Visit"
+    },
+    {
+        date: "November 2026",
+        title: "Kick-off AEC Community @ NFDI4ING",
+        description: "Short event description coming soon.",
+        status: "Coming soon",
+        statusTone: "upcoming",
+        note: "Coming soon..."
+    },
+    {
+        date: "December 2026",
+        title: "AEC Community Meeting @ NFDI4ING Conference",
+        description: "Short event description coming soon.",
+        status: "Upcoming",
+        statusTone: "upcoming",
+        href: "https://nfdi4ing.de/4ing4cat-conf/",
+        label: "Visit"
+    }
+];
+
+const relatedContexts = [
+    {
+        name: "CARE: Klimaneutrales und ressourceneffizientes Bauen",
+        text: "CARE aims to accelerate the transformation of the construction industry towards sustainability. It addresses key challenges in the construction industry: achieving climate neutrality, increasing resource efficiency and productivity, improving working conditions and reducing environmental impact, as well as increasing resilience to climate change.",
+        image: "/assets/logos/CARE_logo.jpg",
+        href: "https://www.care-exc.com/"
+    },
+    {
+        name: "IntCDC: Integrative Computational Design and Construction for Transformative Architecture",
+        text: "IntCDC aims to lay the methodological foundations for the urgently needed, future-proof and climate-positive transformation of the way buildings are designed and constructed. Based on highly interdisciplinary and integrative research, IntCDC seeks to harness the full potential of digital technologies to concurrently advance computational design and engineering methods, cyber-physical fabrication, construction and renovation processes, and next generation material and building systems.",
+        image: "/assets/logos/intcdcl_logo.png",
+        href: "https://www.intcdc.uni-stuttgart.de/",
+        hidden: true
+    },
+    {
+        name: "Architectural RDM-Pipeline",
+        text: "ARDMP aims to develop workflows and tools for transforming heterogeneous architectural research data into structured, reusable, and FAIR Digital Objects.",
+        image: "/assets/logos/ardmp_logo.png",
+        href: "https://nfdi4ing.de/ardm-pipeline/"
+    }
+];
 ---
 
 <BaseLayout
-    title="AEC in NFDI4Ing"
-    description="Architecture, engineering and construction research data management within NFDI4Ing."
+        title="AEC in NFDI4ING"
+        description="Connecting research practices and infrastructures across the built environment within NFDI4ING."
 >
-    <section class="hero section holding-hero">
+    <section class="hero section">
         <div class="container hero-grid">
             <div class="narrow-flow hero-copy">
-                <p class="eyebrow">AEC IN NFDI4ING</p>
-                <h1>
-                    Research data management for the built environment,
-                    connected across disciplines.
-                </h1>
+                <p class="eyebrow">AEC in NFDI4ING</p>
+                <h1>Connecting research practices and infrastructures across the built environment.</h1>
                 <p class="lead">
-                    We are a community of AEC enthusiasts exploring how research
-                    data management can be improved and optimized across the
-                    interdisciplinary driven research fields. We bridge
-                    knowledge between research and RDM, developing and providing
-                    methods, technologies, and guidelines for research.
+                    AEC in NFDI4ING is a forum for research data management in
+                    architecture, engineering, construction, and related fields. AEC in NFDI4ING connects
+                    research practices with sustainable, reusable, and open data and software
+                    infrastructures.
                 </p>
+                <div class="action-row">
+                    <a class="button button-primary" href="/#contact">
+                        Get in touch
+                        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M3 5.75A2.75 2.75 0 0 1 5.75 3h12.5A2.75 2.75 0 0 1 21 5.75v12.5A2.75 2.75 0 0 1 18.25 21H5.75A2.75 2.75 0 0 1 3 18.25V5.75Zm2.3.25 6.2 5.17a.8.8 0 0 0 1 0L18.7 6H5.3Zm13.7 1.56-5.22 4.35a2.3 2.3 0 0 1-2.96 0L5 7.56v10.69c0 .41.34.75.75.75h12.5c.41 0 .75-.34.75-.75V7.56Z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                    <a class="button button-secondary" href="/#events">
+                        Events
+                        <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-it-matters" class="section anchor-section section-divider">
+        <div class="container section-stack">
+            <div class="section-header section-heading-block narrow-flow why-block">
+                <p class="eyebrow">Why this matters</p>
+                <h2>Built environment research between practice and infrastructure.</h2>
+                <p class="section-summary">
+                    Research on the built environment brings together diverse data related to methods,
+                    models, software, drawings, measurements, visual materials, sources and documentation
+                    practices. These constellations are shaped by urgent research questions, disciplinary traditions,
+                    project contexts, and the material conditions of buildings, sites,
+                    infrastructures, and archives.
+                </p>
+                <p class="section-summary">
+                    AEC in NFDI4ING works in this space between practice and
+                    infrastructure. It supports translating specific research needs into
+                    sustainable services, metadata strategies, open workflows, and publication
+                    practices within NFDI4ING.
+                </p>
+                <a
+                    class="event-link"
+                    href={podcastEpisodeHref}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    Want to learn more? Check out the NFDI episode on RDM with Jakob Beetz
+                    <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="card-grid card-grid-3">
+                {focusAreas.map((item) => (
+                    <article class="card">
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="activities" class="section section-soft anchor-section">
+        <div class="container section-stack">
+            <div class="section-header section-heading-block narrow-flow">
+                <p class="eyebrow">What is needed</p>
+                <h2>Creating a space for exchange, experimentation, and coordination.</h2>
+                <p class="section-summary">
+                    AEC in NFDI4ING creates a space between research practice and infrastructure. It helps translate recurring needs from built environment research into sustainable support structures within NFDI4ING.
+                </p>
+            </div>
+
+            <div class="card-grid card-grid-2">
+                {activities.map((item) => (
+                    <article class="card activity-card">
+                        <h3>{item.title}</h3>
+                        <p>{item.text}</p>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section anchor-section">
+        <div class="container section-stack">
+            <div class="section-header section-heading-block narrow-flow">
+                <p class="eyebrow">What is offered</p>
+                <h2>Covering the lifecycle of research data and software.</h2>
+                <p class="section-summary">
+                    AEC in NFDI4ING connects research questions in architecture, engineering,
+                    construction, and the built environment with existing NFDI4ING services and
+                    infrastructures. These services support different moments in the lifecycle of
+                    research data and software: from planning and documentation to computation,
+                    publication, archiving, and reuse.
+                </p>
+                <a class="event-link" href={awesomeCollectionHref}>
+                    Find a complete overview of NFDI4ING services and beyond in our AWESOME AEC in NFDI4ING Collection
+                    <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="card-grid card-grid-3">
+                {services.map((service) => (
+                    <article class="card">
+                        <img class="service-logo" src={serviceLogo} alt="NFDI" loading="lazy" />
+                        <h3>{service.title}</h3>
+                        <p>{service.text}</p>
+                        {service.href ? (
+                            <a class="event-link" href={service.href} target="_blank" rel="noreferrer">
+                                {service.label}
+                                <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                                </svg>
+                            </a>
+                        ) : null}
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="exchange" class="section anchor-section">
+        <div class="container prose-grid exchange-grid">
+            <div class="narrow-flow section-heading-block">
+                <p class="eyebrow">Cross-consortial exchange</p>
+                <h2>Many questions cross disciplinary boundaries.</h2>
+                <p class="section-summary">
+                    Research on the built environment is inherently interdisciplinary. Questions of
+                    documentation, interpretation, representation, provenance, authority data,
+                    visual material, and reuse often emerge across disciplines rather than within a single field.
+                </p>
+                <p class="section-summary">
+                    AEC in NFDI4ING therefore exchanges with related NFDI consortia, particularly
+                    <a href="https://nfdi4culture.de/" target="_blank" rel="noreferrer">NFDI4Culture</a>,
+                    and <a href="https://www.nfdi4objects.net/" target="_blank" rel="noreferrer">NFDI4Objects</a>
+                    to identify shared challenges, compare approaches, and support the transfer
+                    of knowledge, methods, and technologies across domains.
+                </p>
+            </div>
+
+            <div class="logo-showcase">
+                {consortia.filter((consortium) => !consortium.hidden).map((consortium) => (
+                    <a class="logo-card" href={consortium.href} target="_blank" rel="noreferrer">
+                        <img src={consortium.image} alt={consortium.name} loading="lazy" />
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="contexts" class="section anchor-section">
+        <div class="container section-stack">
+            <div class="section-header section-heading-block narrow-flow">
+                <p class="eyebrow">Related Projects</p>
+                <h2>Connected research and infrastructure projects.</h2>
+                <p class="section-summary">
+                    AEC in NFDI4ING links to adjacent initiatives that address climate-neutral construction,
+                    computational design, and architectural research data workflows.
+                </p>
+            </div>
+
+            <div class="card-grid card-grid-3">
+                {relatedContexts.filter((context) => !context.hidden).map((context) => (
+                    <a class="context-card" href={context.href} target="_blank" rel="noreferrer" aria-label={context.name}>
+                        <img class="context-logo" src={context.image} alt={context.name} loading="lazy" />
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="events" class="section section-soft anchor-section">
+        <div class="container section-stack">
+            <div class="section-header section-heading-block narrow-flow">
+                <p class="eyebrow">Events and activities</p>
+                <h2>Engage in exchange around research data management in the built environment.</h2>
+                <p class="section-summary">
+                    Our activities combine practical training, conceptual discussion, technical exchange,
+                    and community building. We organise summer schools, online talks, workshops, discussion events, and community meetings.
+                </p>
+            </div>
+
+            <div class="event-grid">
+                {events.map((event) => (
+                    <article class="event-card">
+                        <div class="event-rail" aria-hidden="true"></div>
+                        <div class="event-content">
+                            <div class="event-meta">
+                                <div class="event-date-wrap">
+                                    <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
+                                    </svg>
+                                    <p class="event-date">{event.date}</p>
+                                </div>
+                            </div>
+                            <h3>{event.title}</h3>
+                            {event.href ? (
+                                <a class="event-link" href={event.href} target="_blank" rel="noreferrer">
+                                    {event.label}
+                                    <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                                    </svg>
+                                </a>
+                            ) : (
+                                <p class="event-note">{event.note}</p>
+                            )}
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="people" class="section anchor-section">
+        <div class="container section-stack">
+            <div class="section-header section-heading-block narrow-flow">
+                <p class="eyebrow">Who is involved</p>
+                <h2>Coordinated between research and infrastructure.</h2>
+                <p class="section-summary">
+                    AEC in NFDI4ING is coordinated by people working between research and infrastructure.
+                    Researchers, developers, infrastructure providers, and projects working on related
+                    questions are invited to contribute topics, cases, and experiences.
+                </p>
+                <p class="section-summary">
+                    As the forum is still emerging, additional participants are invited to help shape its
+                    direction, activities, and shared concerns.
+                </p>
+            </div>
+
+            <div class="people-grid">
+                {coordinators.map((person) => (
+                    <article class="person-card">
+                        <img class="person-image" src={person.image} alt={person.name} loading="lazy" />
+                        <div class="person-copy">
+                            <h3>{person.name}</h3>
+                            <p class="person-role">{person.role}</p>
+                            <p class="person-affiliation">{person.affiliation}</p>
+                        </div>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section anchor-section">
+        <div class="container contact-cta">
+            <div class="narrow-flow section-heading-block">
+                <p class="eyebrow">Get in touch</p>
+                <h2>Working on built environment research data?</h2>
+                <p>
+                    We support researchers and projects in developing appropriate RDM strategies,
+                    identifying related work, discussing suitable technologies and NFDI services, and
+                    preparing data for publication, reuse, and open-science workflows.
+                </p>
+                <p>
+                    You want to help shape interoperable RDM pipelines targeted at AEC? Drop us a message.
+                </p>
+            </div>
+
+            <div class="contact-actions">
+                <a class="button button-primary" href="mailto:roger.winkler@tu-darmstadt.de">
+                    Send an email
+                    <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M3 5.75A2.75 2.75 0 0 1 5.75 3h12.5A2.75 2.75 0 0 1 21 5.75v12.5A2.75 2.75 0 0 1 18.25 21H5.75A2.75 2.75 0 0 1 3 18.25V5.75Zm2.3.25 6.2 5.17a.8.8 0 0 0 1 0L18.7 6H5.3Zm13.7 1.56-5.22 4.35a2.3 2.3 0 0 1-2.96 0L5 7.56v10.69c0 .41.34.75.75.75h12.5c.41 0 .75-.34.75-.75V7.56Z" fill="currentColor"></path>
+                    </svg>
+                </a>
+                <a class="button button-secondary" href="https://nfdi4ing.de/" target="_blank" rel="noreferrer">
+                    Visit NFDI4ING
+                    <svg class="button-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>

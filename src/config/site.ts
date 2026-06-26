@@ -1,13 +1,16 @@
 export const siteMeta = {
-  title: 'AEC in NFDI4ING',
+  title: 'AEC Community @ NFDI4ING',
   description:
-    'The community for architecture, engineering and construction activities within NFDI4Ing.',
+    'Connecting research practices and infrastructures across the built environment within NFDI4ING.',
   siteUrl: 'https://aec.nfdi4ing.de'
 };
 
 export const navigation = [
-  { href: '#partners', label: 'Partners' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#resources', label: 'Resources' },
-  { href: '#contact', label: 'Contact' }
+  { href: '/#why-it-matters', label: 'Why this matters' },
+  { href: '/#activities', label: 'What is needed' },
+  { href: '/#services', label: 'What is offered' },
+  { href: '/#contexts', label: 'Projects' },
+  { href: '/#events', label: 'Events' },
+  { href: '/#people', label: 'People' },
+  { href: '/#contact', label: 'Contact' }
 ];
