@@ -9,8 +9,7 @@ export const navigation = [
   { href: '/#why-it-matters', label: 'Why this matters' },
   { href: '/#activities', label: 'What is needed' },
   { href: '/#services', label: 'What is offered' },
-  { href: '/#contexts', label: 'Projects' },
   { href: '/#events', label: 'Events' },
-  { href: '/#people', label: 'People' },
+  { href: '/#about', label: 'About' },
   { href: '/#contact', label: 'Contact' }
 ];

@@ -12,7 +12,26 @@ import { navigation } from '../config/site';
       />
     </a>
 
-    <nav class="site-nav" aria-label="Section navigation">
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Toggle menu"
+    >
+      <span class="menu-toggle-open" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M3 6a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Zm0 6a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Zm1-7h16a1 1 0 1 0 0 2H4a1 1 0 1 0 0-2Zm0 12a1 1 0 1 0 0 2h16a1 1 0 1 0 0-2H4Z" fill="currentColor"></path>
+        </svg>
+      </span>
+      <span class="menu-toggle-close" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M6.22 5.22a1 1 0 0 1 1.42 0L12 9.58l4.36-4.36a1 1 0 1 1 1.42 1.42L13.42 11l4.36 4.36a1 1 0 0 1-1.42 1.42L12 12.42l-4.36 4.36a1 1 0 0 1-1.42-1.42L10.58 11 6.22 6.64a1 1 0 0 1 0-1.42Z" fill="currentColor"></path>
+        </svg>
+      </span>
+    </button>
+
+    <nav id="primary-nav" class="site-nav" aria-label="Section navigation">
       <ul>
         {navigation.map((item) => (
           <li>
@@ -23,3 +42,42 @@ import { navigation } from '../config/site';
     </nav>
   </div>
 </header>
+
+<script>
+  const header = document.querySelector('.site-header');
+  const menuToggle = header?.querySelector('.menu-toggle');
+  const nav = header?.querySelector('#primary-nav');
+
+  const setMenuState = (isOpen) => {
+    if (!header || !menuToggle || !nav) {
+      return;
+    }
+
+    header.dataset.menuOpen = String(isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  };
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = header?.dataset.menuOpen === 'true';
+    setMenuState(!isOpen);
+  });
+
+  nav?.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLAnchorElement) {
+      setMenuState(false);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      setMenuState(false);
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setMenuState(false);
+    }
+  });
+</script>

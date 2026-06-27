@@ -323,56 +323,6 @@ const relatedContexts = [
         </div>
     </section>
 
-    <section id="exchange" class="section anchor-section">
-        <div class="container prose-grid exchange-grid">
-            <div class="narrow-flow section-heading-block">
-                <p class="eyebrow">Cross-consortial exchange</p>
-                <h2>Many questions cross disciplinary boundaries.</h2>
-                <p class="section-summary">
-                    Research on the built environment is inherently interdisciplinary. Questions of
-                    documentation, interpretation, representation, provenance, authority data,
-                    visual material, and reuse often emerge across disciplines rather than within a single field.
-                </p>
-                <p class="section-summary">
-                    AEC in NFDI4ING therefore exchanges with related NFDI consortia, particularly
-                    <a href="https://nfdi4culture.de/" target="_blank" rel="noreferrer">NFDI4Culture</a>,
-                    and <a href="https://www.nfdi4objects.net/" target="_blank" rel="noreferrer">NFDI4Objects</a>
-                    to identify shared challenges, compare approaches, and support the transfer
-                    of knowledge, methods, and technologies across domains.
-                </p>
-            </div>
-
-            <div class="logo-showcase">
-                {consortia.filter((consortium) => !consortium.hidden).map((consortium) => (
-                    <a class="logo-card" href={consortium.href} target="_blank" rel="noreferrer">
-                        <img src={consortium.image} alt={consortium.name} loading="lazy" />
-                    </a>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <section id="contexts" class="section anchor-section">
-        <div class="container section-stack">
-            <div class="section-header section-heading-block narrow-flow">
-                <p class="eyebrow">Related Projects</p>
-                <h2>Connected research and infrastructure projects.</h2>
-                <p class="section-summary">
-                    AEC in NFDI4ING links to adjacent initiatives that address climate-neutral construction,
-                    computational design, and architectural research data workflows.
-                </p>
-            </div>
-
-            <div class="card-grid card-grid-3">
-                {relatedContexts.filter((context) => !context.hidden).map((context) => (
-                    <a class="context-card" href={context.href} target="_blank" rel="noreferrer" aria-label={context.name}>
-                        <img class="context-logo" src={context.image} alt={context.name} loading="lazy" />
-                    </a>
-                ))}
-            </div>
-        </div>
-    </section>
-
     <section id="events" class="section section-soft anchor-section">
         <div class="container section-stack">
             <div class="section-header section-heading-block narrow-flow">
@@ -415,7 +365,29 @@ const relatedContexts = [
         </div>
     </section>
 
-    <section id="people" class="section anchor-section">
+    <section id="about" class="section anchor-section">
+        <div id="contexts" class="anchor-offset" aria-hidden="true"></div>
+        <div class="container section-stack">
+            <div class="section-header section-heading-block narrow-flow">
+                <p class="eyebrow">Related Projects</p>
+                <h2>Connected research and infrastructure projects.</h2>
+                <p class="section-summary">
+                    AEC in NFDI4ING links to adjacent initiatives that address climate-neutral construction,
+                    computational design, and architectural research data workflows.
+                </p>
+            </div>
+
+            <div class="card-grid card-grid-3">
+                {relatedContexts.filter((context) => !context.hidden).map((context) => (
+                    <a class="context-card" href={context.href} target="_blank" rel="noreferrer" aria-label={context.name}>
+                        <img class="context-logo" src={context.image} alt={context.name} loading="lazy" />
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="people" class="section anchor-section section-soft">
         <div class="container section-stack">
             <div class="section-header section-heading-block narrow-flow">
                 <p class="eyebrow">Who is involved</p>
@@ -441,6 +413,35 @@ const relatedContexts = [
                             <p class="person-affiliation">{person.affiliation}</p>
                         </div>
                     </article>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <section id="exchange" class="section anchor-section">
+        <div class="container prose-grid exchange-grid">
+            <div class="narrow-flow section-heading-block">
+                <p class="eyebrow">Cross-consortial exchange</p>
+                <h2>Many questions cross disciplinary boundaries.</h2>
+                <p class="section-summary">
+                    Research on the built environment is inherently interdisciplinary. Questions of
+                    documentation, interpretation, representation, provenance, authority data,
+                    visual material, and reuse often emerge across disciplines rather than within a single field.
+                </p>
+                <p class="section-summary">
+                    AEC in NFDI4ING therefore exchanges with related NFDI consortia, particularly
+                    <a href="https://nfdi4culture.de/" target="_blank" rel="noreferrer">NFDI4Culture</a>,
+                    and <a href="https://www.nfdi4objects.net/" target="_blank" rel="noreferrer">NFDI4Objects</a>
+                    to identify shared challenges, compare approaches, and support the transfer
+                    of knowledge, methods, and technologies across domains.
+                </p>
+            </div>
+
+            <div class="logo-showcase">
+                {consortia.filter((consortium) => !consortium.hidden).map((consortium) => (
+                    <a class="logo-card" href={consortium.href} target="_blank" rel="noreferrer">
+                        <img src={consortium.image} alt={consortium.name} loading="lazy" />
+                    </a>
                 ))}
             </div>
         </div>
