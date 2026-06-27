@@ -296,11 +296,10 @@ const relatedContexts = [
                     publication, archiving, and reuse.
                 </p>
                 <a class="event-link" href="https://github.com/Design-Computation-RWTH/AWESOME_NDFI4ING" target="_blank" rel="noreferrer">
-                    Check out our AWESOME AEC in NFDI4ING Collection
+                    Visit the AWESOME AEC in NFDI4ING Collection
                     <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
                     </svg>
-                    <p>These are some example services we prv
                 </a>
             </div>
 
@@ -388,6 +387,35 @@ const relatedContexts = [
         </div>
     </section>
 
+    <section id="exchange" class="section anchor-section">
+        <div class="container prose-grid exchange-grid">
+            <div class="narrow-flow section-heading-block">
+                <p class="eyebrow">Cross-consortial exchange</p>
+                <h2>Many questions cross disciplinary boundaries.</h2>
+                <p class="section-summary">
+                    Research on the built environment is inherently interdisciplinary. Questions of
+                    documentation, interpretation, representation, provenance, authority data,
+                    visual material, and reuse often emerge across disciplines rather than within a single field.
+                </p>
+                <p class="section-summary">
+                    AEC in NFDI4ING therefore exchanges with related NFDI consortia, particularly
+                    <a href="https://nfdi4culture.de/" target="_blank" rel="noreferrer">NFDI4Culture</a>,
+                    and <a href="https://www.nfdi4objects.net/" target="_blank" rel="noreferrer">NFDI4Objects</a>
+                    to identify shared challenges, compare approaches, and support the transfer
+                    of knowledge, methods, and technologies across domains.
+                </p>
+            </div>
+
+            <div class="logo-showcase">
+                {consortia.filter((consortium) => !consortium.hidden).map((consortium) => (
+                    <a class="logo-card" href={consortium.href} target="_blank" rel="noreferrer">
+                        <img src={consortium.image} alt={consortium.name} loading="lazy" />
+                    </a>
+                ))}
+            </div>
+        </div>
+    </section>
+
     <section id="people" class="section anchor-section section-soft">
         <div class="container section-stack">
             <div class="section-header section-heading-block narrow-flow">
@@ -414,35 +442,6 @@ const relatedContexts = [
                             <p class="person-affiliation">{person.affiliation}</p>
                         </div>
                     </article>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <section id="exchange" class="section anchor-section">
-        <div class="container prose-grid exchange-grid">
-            <div class="narrow-flow section-heading-block">
-                <p class="eyebrow">Cross-consortial exchange</p>
-                <h2>Many questions cross disciplinary boundaries.</h2>
-                <p class="section-summary">
-                    Research on the built environment is inherently interdisciplinary. Questions of
-                    documentation, interpretation, representation, provenance, authority data,
-                    visual material, and reuse often emerge across disciplines rather than within a single field.
-                </p>
-                <p class="section-summary">
-                    AEC in NFDI4ING therefore exchanges with related NFDI consortia, particularly
-                    <a href="https://nfdi4culture.de/" target="_blank" rel="noreferrer">NFDI4Culture</a>,
-                    and <a href="https://www.nfdi4objects.net/" target="_blank" rel="noreferrer">NFDI4Objects</a>
-                    to identify shared challenges, compare approaches, and support the transfer
-                    of knowledge, methods, and technologies across domains.
-                </p>
-            </div>
-
-            <div class="logo-showcase">
-                {consortia.filter((consortium) => !consortium.hidden).map((consortium) => (
-                    <a class="logo-card" href={consortium.href} target="_blank" rel="noreferrer">
-                        <img src={consortium.image} alt={consortium.name} loading="lazy" />
-                    </a>
                 ))}
             </div>
         </div>

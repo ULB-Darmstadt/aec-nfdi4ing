@@ -11,5 +11,5 @@ export const navigation = [
   { href: '/#services', label: 'What is offered' },
   { href: '/#events', label: 'Events' },
   { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' }
+  { href: '/#people', label: 'Contact' }
 ];
