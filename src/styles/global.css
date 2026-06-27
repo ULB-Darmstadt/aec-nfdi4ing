@@ -225,9 +225,10 @@ p {
   justify-content: center;
   width: 2.7rem;
   height: 2.7rem;
-  border: 1px solid var(--color-border);
-  border-radius: 0.8rem;
-  background: var(--color-surface);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--color-accent);
   cursor: pointer;
 }
@@ -473,8 +474,8 @@ p {
 
 .people-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: var(--space-8);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-6);
 }
 
 .person-card {
@@ -489,14 +490,27 @@ p {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center 22%;
   background: var(--color-surface-subtle);
   filter: grayscale(100%);
 }
 
 .person-copy {
-  display: grid;
-  gap: var(--space-3);
+  display: flex;
+  flex-direction: column;
   padding: var(--space-6);
+}
+
+.person-copy h3 {
+  line-height: 1.12;
+}
+
+.person-copy .person-role {
+  margin-top: var(--space-3);
+}
+
+.person-copy .person-affiliation {
+  margin-top: var(--space-2);
 }
 
 .person-role,
@@ -541,7 +555,7 @@ p {
 .event-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: var(--space-6);
   position: relative;
   background: repeating-linear-gradient(
     to bottom,
@@ -586,7 +600,7 @@ p {
 }
 
 .event-card + .event-card {
-  margin-top: -2.4rem;
+  margin-top: 0;
 }
 
 .event-rail {
@@ -782,18 +796,29 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .people-grid,
   .card-grid-2,
   .card-grid-3,
   .exchange-grid {
     grid-template-columns: 1fr;
   }
 
+  .people-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-5);
+    row-gap: var(--space-6);
+  }
+
+  .person-card {
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem;
+    background: var(--color-surface);
+    box-shadow: 0 12px 24px rgba(0, 14, 82, 0.06);
+  }
+
   .logo-showcase {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .header-inner,
   .footer-inner,
   .contact-cta {
     flex-direction: column;
@@ -802,10 +827,13 @@ p {
 
   .header-inner {
     width: 100%;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
-    padding: 0.8rem 0;
+    row-gap: var(--space-3);
+    column-gap: var(--space-4);
+    padding: 0.8rem var(--space-2);
   }
 
   .menu-toggle {
@@ -814,21 +842,27 @@ p {
   }
 
   .site-nav {
-    display: none;
     width: 100%;
-    padding-top: var(--space-4);
+    padding: var(--space-4) var(--space-3) 0;
     border-top: 1px solid var(--color-border);
   }
 
-  .site-header[data-menu-open="true"] .site-nav {
-    display: block;
+  .site-header[data-menu-ready="true"][data-menu-open="false"] .site-nav {
+    display: none;
   }
 
   .site-nav ul {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: var(--space-4);
     padding: 0 0 var(--space-2);
+  }
+
+  .site-nav a {
+    display: block;
+    width: 100%;
+    text-align: right;
+    padding: 0 var(--space-2);
   }
 
   .event-card {
@@ -912,7 +946,13 @@ p {
     gap: var(--space-6);
   }
 
-  .person-copy {
-    padding: var(--space-5);
+  .people-grid {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-6);
   }
+
+  .person-card {
+    border-color: #c6cfe6;
+  }
+
 }

@@ -2,7 +2,7 @@
 import { navigation } from '../config/site';
 ---
 
-<header class="site-header">
+<header class="site-header" data-menu-open="false">
   <div class="container header-inner">
     <a class="brand" href="https://nfdi4ing.de/" aria-label="Visit the NFDI4ING website">
       <img
@@ -48,6 +48,10 @@ import { navigation } from '../config/site';
   const menuToggle = header?.querySelector('.menu-toggle');
   const nav = header?.querySelector('#primary-nav');
 
+  if (header) {
+    header.dataset.menuReady = 'true';
+  }
+
   const setMenuState = (isOpen) => {
     if (!header || !menuToggle || !nav) {
       return;
@@ -64,7 +68,7 @@ import { navigation } from '../config/site';
 
   nav?.addEventListener('click', (event) => {
     const target = event.target;
-    if (target instanceof HTMLAnchorElement) {
+    if (target instanceof Element && target.closest('a')) {
       setMenuState(false);
     }
   });
