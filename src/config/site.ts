@@ -7,10 +7,9 @@ export const siteMeta = {
 
 export const navigation = [
   { href: '/#why-it-matters', label: 'Why this matters' },
-  { href: '/#activities', label: 'What is needed' },
+  { href: '/#activities', label: 'How it works' },
   { href: '/#services', label: 'What is offered' },
-  { href: '/#contexts', label: 'Projects' },
   { href: '/#events', label: 'Events' },
-  { href: '/#people', label: 'People' },
-  { href: '/#contact', label: 'Contact' }
+  { href: '/#about', label: 'About' },
+  { href: '/#people', label: 'Contact' }
 ];
