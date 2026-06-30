@@ -183,17 +183,10 @@ const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.st
                 <h2>Covering the lifecycle of research data and software.</h2>
                 <p class="section-summary">
                     AEC in NFDI4ING connects research questions in architecture, engineering,
-                    construction, and the built environment with existing NFDI4ING services and
-                    infrastructures. These services support different moments in the lifecycle of
+                    construction, and the built environment with <a class="link-primary" href="https://nfdi4ing.de/home/25_services/" target="_blank" rel="noreferrer">existing NFDI4ING services</a>. These support different moments in the lifecycle of
                     research data and software: from planning and documentation to computation,
                     publication, archiving, and reuse.
                 </p>
-                <a class="event-link" href="https://github.com/Design-Computation-RWTH/AWESOME_NDFI4ING" target="_blank" rel="noreferrer">
-                    Visit the AWESOME AEC in NFDI4ING Collection
-                    <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
-                    </svg>
-                </a>
             </div>
 
             <div class="card-grid card-grid-3">
@@ -213,6 +206,16 @@ const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.st
                     </article>
                 ))}
             </div>
+
+            <a class="event-link" href="https://github.com/Design-Computation-RWTH/AWESOME_NDFI4ING" target="_blank" rel="noreferrer">
+                <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.91-2.78.62-3.37-1.2-3.37-1.2-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .08 1.53 1.05 1.53 1.05.9 1.56 2.35 1.11 2.92.85.09-.67.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.09 0-1.13.39-2.05 1.03-2.77-.1-.26-.45-1.32.1-2.75 0 0 .84-.27 2.75 1.06A9.3 9.3 0 0 1 12 6.84c.85 0 1.71.12 2.51.36 1.91-1.33 2.75-1.06 2.75-1.06.55 1.43.2 2.49.1 2.75.64.72 1.03 1.64 1.03 2.77 0 3.96-2.34 4.82-4.57 5.08.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.59.69.49A10.25 10.25 0 0 0 22 12.23C22 6.58 17.52 2 12 2Z" fill="currentColor"></path>
+                </svg>
+                Explore more tools and services in the AWESOME AEC in NFDI4ING Collection
+                <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                </svg>
+            </a>
         </div>
     </section>
 
@@ -234,6 +237,11 @@ const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.st
                             <a class="event-card event-card-link" href={event.href} target="_blank" rel="noreferrer">
                                 <div class="event-image-shell">
                                     <img class="event-image" src={event.image} alt={event.title} loading="lazy" />
+                                    <span class="event-image-link-indicator" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" focusable="false">
+                                            <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
                                 </div>
                                 <div class="event-content">
                                     <p class="event-tag">{event.tag}</p>
