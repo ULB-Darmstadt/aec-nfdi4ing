@@ -1,195 +1,81 @@
 ---
 import { ACTION_ERROR_CODES } from "astro:actions";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import activitiesJson from "../data/home/activities.json";
+import consortiaJson from "../data/home/consortia.json";
+import coordinatorsJson from "../data/home/coordinators.json";
+import eventsJson from "../data/home/events.json";
+import focusAreasJson from "../data/home/focus-areas.json";
+import relatedContextsJson from "../data/home/related-contexts.json";
+import servicesJson from "../data/home/services.json";
 
 const awesomeCollectionHref = "#";
 const podcastEpisodeHref = "https://shows.acast.com/nfdi-podcast-for-a-fair-data-future/episodes/datenmanagement-in-der-gebauten-umwelt";
 const serviceLogo = "/assets/logos/nfdi_only_logo.svg";
 
-const consortia = [
-    {
-        name: "NFDI4ING",
-        image: "/assets/logos/nfdi4ing_logo.svg",
-        href: "https://nfdi4ing.de/"
-    },
-    {
-        name: "NFDI4Culture",
-        image: "/assets/logos/NFDI4Culture_logo.png",
-        href: "https://nfdi4culture.de/"
-    },
-    {
-        name: "NFDI4Objects",
-        image: "/assets/logos/NFDI4OBJECTS_logo.svg",
-        href: "https://www.nfdi4objects.net/"
-    },
-    {
-        name: "NFDI4EARTH",
-        image: "/assets/logos/nfdi4earth_logo.webp",
-        href: "https://www.nfdi4earth.de/",
-        hidden: true
-    }
-];
+type Consortium = {
+    name: string;
+    image: string;
+    href: string;
+    hidden?: boolean;
+};
 
-const focusAreas = [
-    {
-        title: "From research situations",
-        text: "Starting with actual research practices: how data is collected, interpreted, classified, structured, documented, and prepared for publication, dissemination and reuse."
-    },
-    {
-        title: "Through shared discussion",
-        text: "Bringing together researchers, infrastructure providers, developers, and community initiatives into exchange around recurring needs and open questions."
-    },
-    {
-        title: "Towards sustainable infrastructure",
-        text: "Connecting requirements from AEC-related research with NFDI services, metadata approaches, repositories, software practices, and publication workflows."
-    }
-];
+type FocusArea = {
+    title: string;
+    text: string;
+};
 
-const activities = [
-    {
-        title: "Requirements and use cases",
-        text: "Requirements from AEC-related research are collected, discussed, and translated into recommendations for infrastructure services, metadata services, repositories, and publication workflows."
-    },
-    {
-        title: "Metadata and documentation",
-        text: "The development, use, and evaluation of metadata profiles, documentation strategies, and data description practices are supported in order to make research work understandable and reusable."
-    },
-    {
-        title: "Open workflows and research software",
-        text: "Open science, open source, and research software practices in the AEC field are discussed with attention to tools, standards, services, and workflows for collaborative research."
-    },
-    {
-        title: "Training and exchange",
-        text: "Summer schools, online talks, workshops, discussion events, and meetings are organised to connect conceptual discussion, method development, technical exchange, and practical training."
-    }
-];
+type Activity = {
+    title: string;
+    text: string;
+};
 
-const services = [
-    {
-        title: "Research Data Management Organiser",
-        text: "Support for planning and documenting research data management processes, including data management plans, project-specific requirements, responsibilities, data types, standards, and publication strategies.",
-        href: "https://rdmo.nfdi4ing.de/",
-        label: "RDMO"
-    },
-    {
-        title: "JupyterHub",
-        text: "Access to computational environments for data processing, analysis, documentation, and reproducible workflows. JupyterHub supports research scenarios in which scripts, notebooks, datasets, and methods need to be developed and shared transparently.",
-        href: "https://jupyter.nfdi4ing.de/",
-        label: "JupyterHub"
-    },
-    {
-        title: "Data Ingest Services",
-        text: "Support for handling large and complex datasets in architecture and engineering. INGEST helps researchers prepare datasets for publication and reuse through web-based 2D and 3D visual previews, persistent identifiers such as DOIs, domain-specific metadata, and long-term archiving in accordance with FAIR principles.",
-        href: "https://ingest.nfdi4ing.de/",
-        label: "INGEST"
-    }
-];
+type Service = {
+    title: string;
+    text: string;
+    href: string;
+    label: string;
+};
 
-const coordinators = [
-    {
-        name: "Prof. Dr. Jakob Beetz",
-        role: "Co-Spokesperson in NFDI4ING",
-        affiliation: "Chair for Design Computation, RWTH Aachen University",
-        image: "/assets/people/beetz.webp"
-    },
-    {
-        name: "Dr. Jyrki Oraskari",
-        role: "Research",
-        affiliation: "Chair for Design Computation, RWTH Aachen University",
-        image: "/assets/people/Oraskari.jpg"
-    },
-    {
-        name: "Dr. Andreas Noback",
-        role: "Infrastructure",
-        affiliation: "NFDI4ING, Technical University of Darmstadt",
-        image: "/assets/people/Noback.jpg"
-    },
-    {
-        name: "Roger Winkler",
-        role: "Infrastructure",
-        affiliation: "University and State Library Darmstadt, Technical University of Darmstadt",
-        image: "/assets/people/Winkler.png"
-    },
-    {
-        name: "Hana Svatos-Raznjevic",
-        role: "Research",
-        affiliation: "Institute for Computational Design and Construction, University of Stuttgart",
-        image: "/assets/people/Svatos.jpg"
-    }
-];
+type Coordinator = {
+    name: string;
+    role: string;
+    affiliation: string;
+    image: string;
+};
 
-const events = [
-    {
-        date: "July 2026",
-        title: "Summer School ALEX",
-        description: "Short event description coming soon.",
-        status: "Registration closed",
-        statusTone: "muted",
-        href: "https://nfdi4ing.de/a-summer-school26-2/",
-        label: "Visit"
-    },
-    {
-        date: "August 2026",
-        title: "Summer School ELLEN",
-        description: "Short event description coming soon.",
-        status: "Upcoming",
-        statusTone: "upcoming",
-        note: "Coming soon..."
-    },
-    {
-        date: "August 2026",
-        title: "Cross-NFDI Event Bauwerksnormdaten",
-        description: "Short event description coming soon.",
-        status: "Open registration",
-        statusTone: "active",
-        href: "https://reg.nfdi4objects.net/N4O/Bau-Norm/",
-        label: "Visit"
-    },
-    {
-        date: "November 2026",
-        title: "Kick-off AEC Community @ NFDI4ING",
-        description: "Short event description coming soon.",
-        status: "Coming soon",
-        statusTone: "upcoming",
-        note: "Coming soon..."
-    },
-    {
-        date: "December 2026",
-        title: "AEC Community Meeting @ NFDI4ING Conference",
-        description: "Short event description coming soon.",
-        status: "Upcoming",
-        statusTone: "upcoming",
-        href: "https://nfdi4ing.de/4ing4cat-conf/",
-        label: "Visit"
-    }
-];
+type Event = {
+    image: string;
+    tag: string;
+    exactDate: string;
+    title: string;
+    description: string;
+    status: string;
+    href?: string;
+};
 
-const relatedContexts: Array<{
+type RelatedContext = {
     name: string;
     text: string;
     image: string;
     href: string;
     hidden?: boolean;
-}> = [
-    {
-        name: "CARE: Klimaneutrales und ressourceneffizientes Bauen",
-        text: "CARE aims to accelerate the transformation of the construction industry towards sustainability. It addresses key challenges in the construction industry: achieving climate neutrality, increasing resource efficiency and productivity, improving working conditions and reducing environmental impact, as well as increasing resilience to climate change.",
-        image: "/assets/logos/CARE_logo.jpg",
-        href: "https://www.care-exc.com/"
-    },
-    {
-        name: "IntCDC: Integrative Computational Design and Construction for Transformative Architecture",
-        text: "IntCDC aims to lay the methodological foundations for the urgently needed, future-proof and climate-positive transformation of the way buildings are designed and constructed. Based on highly interdisciplinary and integrative research, IntCDC seeks to harness the full potential of digital technologies to concurrently advance computational design and engineering methods, cyber-physical fabrication, construction and renovation processes, and next generation material and building systems.",
-        image: "/assets/logos/intcdcl_logo.png",
-        href: "https://www.intcdc.uni-stuttgart.de/"
-    },
-    {
-        name: "Architectural RDM-Pipeline",
-        text: "ARDMP aims to develop workflows and tools for transforming heterogeneous architectural research data into structured, reusable, and FAIR Digital Objects.",
-        image: "/assets/logos/ardmp_logo.png",
-        href: "https://nfdi4ing.de/ardm-pipeline/"
-    }
-];
+};
+
+const consortia: Consortium[] = consortiaJson;
+const focusAreas: FocusArea[] = focusAreasJson;
+const activities: Activity[] = activitiesJson;
+const services: Service[] = servicesJson;
+const coordinators: Coordinator[] = coordinatorsJson;
+const events: Event[] = eventsJson;
+const relatedContexts: RelatedContext[] = relatedContextsJson;
+const visibleEventStatuses = new Set([
+    "Registration closed",
+    "Upcoming",
+    "Open registration",
+    "Coming soon"
+]);
+const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.status));
 ---
 
 <BaseLayout
@@ -227,33 +113,35 @@ const relatedContexts: Array<{
 
     <section id="why-it-matters" class="section anchor-section section-divider">
         <div class="container section-stack">
-            <div class="section-header section-heading-block narrow-flow why-block">
-                <p class="eyebrow">Why this matters</p>
-                <h2>Built environment research between practice and infrastructure.</h2>
-                <p class="section-summary">
-                    Research on the built environment brings together diverse data related to methods,
-                    models, software, drawings, measurements, visual materials, sources and documentation
-                    practices. These constellations are shaped by urgent research questions, disciplinary traditions,
-                    project contexts, and the material conditions of buildings, sites,
-                    infrastructures, and archives.
-                </p>
-                <p class="section-summary">
-                    AEC in NFDI4ING works in this space between practice and
-                    infrastructure. It supports translating specific research needs into
-                    sustainable services, metadata strategies, open workflows, and publication
-                    practices within NFDI4ING.
-                </p>
-                <a
-                    class="event-link"
-                    href={podcastEpisodeHref}
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    Want to learn more? Listen to the NFDI episode on RDM with Jakob Beetz
-                    <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                        <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
-                    </svg>
-                </a>
+            <div class="section-header">
+                <div class="section-heading-block narrow-flow why-block">
+                    <p class="eyebrow">Why this matters</p>
+                    <h2>Built environment research between practice and infrastructure.</h2>
+                    <p class="section-summary">
+                        Research on the built environment brings together diverse data related to methods,
+                        models, software, drawings, measurements, visual materials, sources and documentation
+                        practices. These constellations are shaped by urgent research questions, disciplinary traditions,
+                        project contexts, and the material conditions of buildings, sites,
+                        infrastructures, and archives.
+                    </p>
+                    <p class="section-summary">
+                        AEC in NFDI4ING works in this space between practice and
+                        infrastructure. It supports translating specific research needs into
+                        sustainable services, metadata strategies, open workflows, and publication
+                        practices within NFDI4ING.
+                    </p>
+                    <a
+                        class="event-link"
+                        href={podcastEpisodeHref}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Want to learn more? Listen to the NFDI episode on RDM with Jakob Beetz
+                        <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
             <div class="card-grid card-grid-3">
@@ -340,35 +228,122 @@ const relatedContexts: Array<{
             </div>
 
             <div class="event-grid">
-                {events.map((event) => (
-                    <article class="event-card">
-                        <div class="event-rail" aria-hidden="true"></div>
-                        <div class="event-content">
-                            <div class="event-meta">
-                                <div class="event-date-wrap">
-                                    <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                        <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
-                                    </svg>
-                                    <p class="event-date">{event.date}</p>
+                <div class="events-track" data-events-track tabindex="0">
+                    {visibleEvents.map((event) => (
+                        event.href ? (
+                            <a class="event-card event-card-link" href={event.href} target="_blank" rel="noreferrer">
+                                <div class="event-image-shell">
+                                    <img class="event-image" src={event.image} alt={event.title} loading="lazy" />
                                 </div>
-                            </div>
-                            <h3>{event.title}</h3>
-                            {event.href ? (
-                                <a class="event-link" href={event.href} target="_blank" rel="noreferrer">
-                                    {event.label}
-                                    <svg class="event-link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                        <path d="M14 4a1 1 0 1 0 0 2h2.59l-6.3 6.3a1 1 0 1 0 1.42 1.4L18 7.42V10a1 1 0 1 0 2 0V5a1 1 0 0 0-1-1h-5ZM6 6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4a1 1 0 1 0-2 0v4H6V8h4a1 1 0 1 0 0-2H6Z" fill="currentColor"></path>
-                                    </svg>
-                                </a>
-                            ) : (
-                                <p class="event-note">{event.note}</p>
-                            )}
-                        </div>
-                    </article>
-                ))}
+                                <div class="event-content">
+                                    <p class="event-tag">{event.tag}</p>
+                                    <h3>{event.title}</h3>
+                                    <p>{event.description}</p>
+                                    <div class="event-date-wrap">
+                                        <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                            <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
+                                        </svg>
+                                        <p class="event-date">{event.exactDate}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        ) : (
+                            <article class="event-card">
+                                <div class="event-image-shell">
+                                    <img class="event-image" src={event.image} alt={event.title} loading="lazy" />
+                                </div>
+                                <div class="event-content">
+                                    <p class="event-tag">{event.tag}</p>
+                                    <h3>{event.title}</h3>
+                                    <p>{event.description}</p>
+                                    <div class="event-date-wrap">
+                                        <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                            <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
+                                        </svg>
+                                        <p class="event-date">{event.exactDate}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        )
+                    ))}
+                </div>
+                <div class="events-controls" aria-label="Event navigation">
+                    <button class="events-control" type="button" data-events-prev aria-label="Show previous events">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M14.7 5.3a1 1 0 0 1 0 1.4L10.41 11H20a1 1 0 1 1 0 2h-9.59l4.29 4.3a1 1 0 1 1-1.4 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.4 0Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                    <button class="events-control" type="button" data-events-next aria-label="Show next events">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M9.3 18.7a1 1 0 0 1 0-1.4L13.59 13H4a1 1 0 1 1 0-2h9.59L9.3 6.7a1 1 0 0 1 1.4-1.4l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 0 1-1.4 0Z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
+
+    <script is:inline>
+        const eventTrack = document.querySelector('[data-events-track]');
+        const prevButton = document.querySelector('[data-events-prev]');
+        const nextButton = document.querySelector('[data-events-next]');
+
+        if (
+            eventTrack instanceof HTMLElement &&
+            prevButton instanceof HTMLButtonElement &&
+            nextButton instanceof HTMLButtonElement
+        ) {
+            const getScrollStep = () => {
+                const firstCard = eventTrack.querySelector('.event-card');
+                if (!(firstCard instanceof HTMLElement)) {
+                    return eventTrack.clientWidth;
+                }
+
+                const styles = window.getComputedStyle(eventTrack);
+                const gapValue = styles.columnGap !== 'normal' ? styles.columnGap : styles.gap;
+                const gap = Number.parseFloat(gapValue) || 0;
+                return firstCard.getBoundingClientRect().width + gap;
+            };
+
+            const updateControls = () => {
+                const hasOverflow = eventTrack.scrollWidth - eventTrack.clientWidth > 4;
+                prevButton.disabled = !hasOverflow;
+                nextButton.disabled = !hasOverflow;
+            };
+
+            prevButton.addEventListener('click', () => {
+                const maxScrollLeft = eventTrack.scrollWidth - eventTrack.clientWidth;
+                if (maxScrollLeft <= 4) {
+                    return;
+                }
+
+                if (eventTrack.scrollLeft <= 4) {
+                    eventTrack.scrollTo({ left: maxScrollLeft, behavior: 'smooth' });
+                    return;
+                }
+
+                eventTrack.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
+            });
+
+            nextButton.addEventListener('click', () => {
+                const maxScrollLeft = eventTrack.scrollWidth - eventTrack.clientWidth;
+                if (maxScrollLeft <= 4) {
+                    return;
+                }
+
+                if (eventTrack.scrollLeft + eventTrack.clientWidth >= eventTrack.scrollWidth - 4) {
+                    eventTrack.scrollTo({ left: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                eventTrack.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
+            });
+
+            eventTrack.addEventListener('scroll', updateControls, { passive: true });
+            window.addEventListener('resize', updateControls);
+            updateControls();
+        }
+    </script>
 
     <section id="about" class="section anchor-section">
         <div id="contexts" class="anchor-offset" aria-hidden="true"></div>
@@ -440,7 +415,9 @@ const relatedContexts: Array<{
             <div class="people-grid">
                 {coordinators.map((person) => (
                     <article class="person-card">
-                        <img class="person-image" src={person.image} alt={person.name} loading="lazy" />
+                        <div class="person-image-shell">
+                            <img class="person-image" src={person.image} alt={person.name} loading="lazy" />
+                        </div>
                         <div class="person-copy">
                             <h3>{person.name}</h3>
                             <p class="person-role">{person.role}</p>

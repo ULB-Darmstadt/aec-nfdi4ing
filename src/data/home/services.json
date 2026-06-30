@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Research Data Management Organiser",
+    "text": "Support for planning and documenting research data management processes, including data management plans, project-specific requirements, responsibilities, data types, standards, and publication strategies.",
+    "href": "https://rdmo.nfdi4ing.de/",
+    "label": "RDMO"
+  },
+  {
+    "title": "JupyterHub",
+    "text": "Access to computational environments for data processing, analysis, documentation, and reproducible workflows. JupyterHub supports research scenarios in which scripts, notebooks, datasets, and methods need to be developed and shared transparently.",
+    "href": "https://jupyter.nfdi4ing.de/",
+    "label": "JupyterHub"
+  },
+  {
+    "title": "Data Ingest Services",
+    "text": "Support for handling large and complex datasets in architecture and engineering. INGEST helps researchers prepare datasets for publication and reuse through web-based 2D and 3D visual previews, persistent identifiers such as DOIs, domain-specific metadata, and long-term archiving in accordance with FAIR principles.",
+    "href": "https://ingest.nfdi4ing.de/",
+    "label": "INGEST"
+  }
+]

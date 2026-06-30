@@ -1,0 +1,23 @@
+[
+  {
+    "name": "NFDI4ING",
+    "image": "/assets/logos/nfdi4ing_logo.svg",
+    "href": "https://nfdi4ing.de/"
+  },
+  {
+    "name": "NFDI4Culture",
+    "image": "/assets/logos/NFDI4Culture_logo.png",
+    "href": "https://nfdi4culture.de/"
+  },
+  {
+    "name": "NFDI4Objects",
+    "image": "/assets/logos/NFDI4OBJECTS_logo.svg",
+    "href": "https://www.nfdi4objects.net/"
+  },
+  {
+    "name": "NFDI4EARTH",
+    "image": "/assets/logos/nfdi4earth_logo.webp",
+    "href": "https://www.nfdi4earth.de/",
+    "hidden": true
+  }
+]

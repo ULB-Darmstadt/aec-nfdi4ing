@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Prof. Dr. Jakob Beetz",
+    "role": "Co-Spokesperson in NFDI4ING",
+    "affiliation": "Chair for Design Computation, RWTH Aachen University",
+    "image": "/assets/people/beetz.webp"
+  },
+  {
+    "name": "Dr. Jyrki Oraskari",
+    "role": "Research",
+    "affiliation": "Chair for Design Computation, RWTH Aachen University",
+    "image": "/assets/people/Oraskari.jpg"
+  },
+  {
+    "name": "Dr. Andreas Noback",
+    "role": "Infrastructure",
+    "affiliation": "NFDI4ING, Technical University of Darmstadt",
+    "image": "/assets/people/Noback.jpg"
+  },
+  {
+    "name": "Roger Winkler",
+    "role": "Infrastructure",
+    "affiliation": "University and State Library Darmstadt, Technical University of Darmstadt",
+    "image": "/assets/people/Winkler.png"
+  },
+  {
+    "name": "Hana Svatos-Raznjevic",
+    "role": "Research",
+    "affiliation": "Institute for Computational Design and Construction, University of Stuttgart",
+    "image": "/assets/people/Svatos.jpg"
+  }
+]

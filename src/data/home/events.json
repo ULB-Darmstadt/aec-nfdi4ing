@@ -1,0 +1,54 @@
+[
+  {
+    "image": "/assets/events/alex.png",
+    "tag": "Summer School",
+    "exactDate": "6-8 July 2026",
+    "title": "Alex’ Summer School 2026",
+    "description": "A practice-oriented training on modern research data management in engineering sciences. The summer school combines online preparatory courses with an intensive on-site workshop.",
+    "status": "Registration closed",
+    "href": "https://nfdi4ing.de/a-summer-school26-2/"
+  },
+  {
+    "image": "/assets/events/alex-1.png",
+    "tag": "Summer School",
+    "exactDate": "Coming soon",
+    "title": "Ellen Summer School 2026",
+    "description": "Coming soon.",
+    "status": "Upcoming"
+  },
+  {
+    "image": "/assets/events/bauwerk.png",
+    "tag": "Cross-NFDI Event",
+    "exactDate": "26-27 August 2026",
+    "title": "Special Interest Group Bauwerksreferenz- und Normdaten",
+    "description": "A consortium-spanning lunch-to-lunch event on building reference and standard data involving partners from NFDI4Culture, NFDI4Objects, NFDI4ING, and other collaborators.",
+    "status": "Open registration",
+    "href": "https://reg.nfdi4objects.net/N4O/Bau-Norm/"
+  },
+  {
+    "image": "/assets/events/default_1.png",
+    "tag": "Kick-off",
+    "exactDate": "November 2026",
+    "title": "Kick-off AEC Community @ NFDI4ING",
+    "description": "Coming soon.",
+    "status": "Coming soon"
+  },
+  {
+    "image": "/assets/events/default_2.png",
+    "tag": "Community Meeting",
+    "exactDate": "7-9 December 2026",
+    "title": "AEC Community Meeting @ NFDI4ING Conference",
+    "description": "coming soon...",
+    "status": "Upcoming",
+    "href": "https://nfdi4ing.de/4ing4cat-conf/"
+  },
+    {
+    "image": "/assets/events/nfdiconf.png",
+    "tag": "Conference",
+    "exactDate": "7-9 December 2026",
+    "title": "NFDI4Cat & NFDI4ING CuttingEdge Conference 2026",
+    "description": "Together for better research! In 2026, NFDI4ING and NFDI4Cat will host a joint conference at the DECHEMA venue in Frankfurt am Main.",
+    "status": "Upcoming",
+    "href": "https://nfdi4ing.de/4ing4cat-conf/"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "CARE: Klimaneutrales und ressourceneffizientes Bauen",
+    "text": "CARE aims to accelerate the transformation of the construction industry towards sustainability. It addresses key challenges in the construction industry: achieving climate neutrality, increasing resource efficiency and productivity, improving working conditions and reducing environmental impact, as well as increasing resilience to climate change.",
+    "image": "/assets/logos/CARE_logo.jpg",
+    "href": "https://www.care-exc.com/"
+  },
+  {
+    "name": "IntCDC: Integrative Computational Design and Construction for Transformative Architecture",
+    "text": "IntCDC aims to lay the methodological foundations for the urgently needed, future-proof and climate-positive transformation of the way buildings are designed and constructed. Based on highly interdisciplinary and integrative research, IntCDC seeks to harness the full potential of digital technologies to concurrently advance computational design and engineering methods, cyber-physical fabrication, construction and renovation processes, and next generation material and building systems.",
+    "image": "/assets/logos/intcdcl_logo.png",
+    "href": "https://www.intcdc.uni-stuttgart.de/"
+  },
+  {
+    "name": "Architectural RDM-Pipeline",
+    "text": "ARDMP aims to develop workflows and tools for transforming heterogeneous architectural research data into structured, reusable, and FAIR Digital Objects.",
+    "image": "/assets/logos/ardmp_logo.png",
+    "href": "https://nfdi4ing.de/ardm-pipeline/"
+  }
+]
