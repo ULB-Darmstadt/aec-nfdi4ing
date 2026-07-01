@@ -3,30 +3,44 @@
     "name": "Prof. Dr. Jakob Beetz",
     "role": "Co-Spokesperson in NFDI4ING",
     "affiliation": "Chair for Design Computation, RWTH Aachen University",
-    "image": "/assets/people/beetz.webp"
+    "image": "/assets/people/beetz.webp",
+    "linkedin": "https://www.linkedin.com/in/jakobbeetz/",
+    "orcid": "https://orcid.org/0000-0002-9975-9206",
+    "website": "https://dc.rwth-aachen.de/jakob-beetz/"
   },
   {
     "name": "Dr. Jyrki Oraskari",
     "role": "Research",
     "affiliation": "Chair for Design Computation, RWTH Aachen University",
-    "image": "/assets/people/Oraskari.jpg"
+    "image": "/assets/people/Oraskari.jpg",
+    "linkedin": "https://www.linkedin.com/in/jyrki-oraskari-0668b/",
+    "orcid": "https://orcid.org/0000-0002-4723-3878",
+    "website": "https://dc.rwth-aachen.de/jyrki-oraskari/"
   },
   {
     "name": "Dr. Andreas Noback",
     "role": "Infrastructure",
     "affiliation": "NFDI4ING, Technical University of Darmstadt",
-    "image": "/assets/people/Noback.jpg"
+    "image": "/assets/people/Noback.jpg",
+    "orcid": "https://orcid.org/0000-0001-8214-0952",
+    "website": "https://www.fst.tu-darmstadt.de/fachgebiet/mitarbeiter/mitarbeiterdetails_fst_256000.en.jsp"
   },
   {
     "name": "Roger Winkler",
     "role": "Infrastructure",
     "affiliation": "University and State Library Darmstadt, Technical University of Darmstadt",
-    "image": "/assets/people/Winkler.png"
+    "image": "/assets/people/Winkler.png",
+    "linkedin": "https://www.linkedin.com/in/rogerwinkler/",
+    "orcid": "https://orcid.org/0000-0001-6259-4068",
+    "website": "https://www.ulb.tu-darmstadt.de/die_bibliothek/ueberuns/organisation/kontakt_details_28480.de.jsp"
   },
   {
     "name": "Hana Svatos-Raznjevic",
     "role": "Research",
     "affiliation": "Institute for Computational Design and Construction, University of Stuttgart",
-    "image": "/assets/people/Svatos.jpg"
+    "image": "/assets/people/Svatos.jpg",
+    "linkedin": "https://www.linkedin.com/in/hana-svato%C5%A1-ra%C5%BEnjevi%C4%87-aa758b64/",
+    "orcid": "https://orcid.org/0000-0002-4622-5403",
+    "website": "https://www.icd.uni-stuttgart.de/team/Svatos-Raznjevic-00001/"
   }
 ]

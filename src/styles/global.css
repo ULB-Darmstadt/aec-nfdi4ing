@@ -626,6 +626,50 @@ p {
   line-height: 1.55;
 }
 
+.person-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.person-link {
+  --person-link-accent: var(--color-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--person-link-accent);
+  background: var(--color-surface-subtle);
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    background-color 180ms ease;
+}
+
+.person-link:hover,
+.person-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--person-link-accent);
+  color: var(--person-link-accent);
+  background: color-mix(in srgb, var(--person-link-accent) 12%, white);
+}
+
+.person-link svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.person-link-brand svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 .event-icon {
   width: 1.1rem;
   height: 1.1rem;

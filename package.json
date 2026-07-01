@@ -15,6 +15,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^7.3.0",
     "lucide-astro": "^0.556.0"
   }
 }

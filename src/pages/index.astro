@@ -1,5 +1,7 @@
 ---
 import { ACTION_ERROR_CODES } from "astro:actions";
+import { faLinkedin, faOrcid } from "@fortawesome/free-brands-svg-icons";
+import { Globe } from "lucide-astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import activitiesJson from "../data/home/activities.json";
 import consortiaJson from "../data/home/consortia.json";
@@ -12,6 +14,8 @@ import servicesJson from "../data/home/services.json";
 const awesomeCollectionHref = "#";
 const podcastEpisodeHref = "https://shows.acast.com/nfdi-podcast-for-a-fair-data-future/episodes/datenmanagement-in-der-gebauten-umwelt";
 const serviceLogo = "/assets/logos/nfdi_only_logo.svg";
+const linkedinIcon = faLinkedin.icon;
+const orcidIcon = faOrcid.icon;
 
 type Consortium = {
     name: string;
@@ -42,6 +46,9 @@ type Coordinator = {
     role: string;
     affiliation: string;
     image: string;
+    linkedin?: string;
+    orcid?: string;
+    website?: string;
 };
 
 type Event = {
@@ -437,6 +444,39 @@ const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.st
                             <h3>{person.name}</h3>
                             <p class="person-role">{person.role}</p>
                             <p class="person-affiliation">{person.affiliation}</p>
+                            <div class="person-links" aria-label={`Links for ${person.name}`}>
+                                {person.orcid ? (
+                                    <a
+                                        class="person-link person-link-brand"
+                                        href={person.orcid}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label={`Open ORCID profile for ${person.name}`}
+                                    >
+                                        <svg viewBox={`0 0 ${orcidIcon[0]} ${orcidIcon[1]}`} aria-hidden="true" focusable="false">
+                                            <path d={orcidIcon[4] as string} fill="currentColor"></path>
+                                        </svg>
+                                    </a>
+                                ) : null}
+                                {person.linkedin ? (
+                                    <a
+                                        class="person-link person-link-brand"
+                                        href={person.linkedin}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label={`Open LinkedIn profile for ${person.name}`}
+                                    >
+                                        <svg viewBox={`0 0 ${linkedinIcon[0]} ${linkedinIcon[1]}`} aria-hidden="true" focusable="false">
+                                            <path d={linkedinIcon[4] as string} fill="currentColor"></path>
+                                        </svg>
+                                    </a>
+                                ) : null}
+                                {person.website ? (
+                                    <a class="person-link" href={person.website} target="_blank" rel="noreferrer" aria-label={`Open website for ${person.name}`}>
+                                        <Globe aria-hidden="true" focusable="false" />
+                                    </a>
+                                ) : null}
+                            </div>
                         </div>
                     </article>
                 ))}
