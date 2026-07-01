@@ -292,6 +292,13 @@ const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.st
     </section>
 
     <script is:inline>
+        const syncViewportWidth = () => {
+            document.documentElement.style.setProperty('--viewport-width', `${document.documentElement.clientWidth}px`);
+        };
+
+        syncViewportWidth();
+        window.addEventListener('resize', syncViewportWidth);
+
         const eventTrack = document.querySelector('[data-events-track]');
         const prevButton = document.querySelector('[data-events-prev]');
         const nextButton = document.querySelector('[data-events-next]');

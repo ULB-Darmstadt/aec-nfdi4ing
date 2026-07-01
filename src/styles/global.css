@@ -647,8 +647,8 @@ p {
 .event-grid {
   display: grid;
   gap: var(--space-6);
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
+  width: var(--viewport-width, 100vw);
+  margin-left: calc(50% - (var(--viewport-width, 100vw) / 2));
   padding-inline: clamp(1rem, 2.5vw, 2rem);
 }
 
@@ -1048,8 +1048,8 @@ p {
   }
 
   .event-grid {
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    width: var(--viewport-width, 100vw);
+    margin-left: calc(50% - (var(--viewport-width, 100vw) / 2));
     padding-inline: 0;
   }
 
