@@ -673,19 +673,37 @@ p {
 .event-icon {
   width: 1.1rem;
   height: 1.1rem;
-  color: var(--color-primary-500);
+  color: var(--color-secondary);
   flex: none;
 }
 
 .event-date {
   margin: 0;
+  color: var(--color-secondary);
+}
+
+.event-meta {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: auto;
 }
 
 .event-date-wrap {
   display: inline-flex;
   align-items: center;
   gap: var(--space-3);
-  margin-top: auto;
+}
+
+.event-location-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.event-location {
+  margin: 0;
+  color: var(--color-secondary);
+  font-size: var(--text-meta);
 }
 
 .event-grid {
@@ -714,7 +732,8 @@ p {
 
 .event-card {
   display: grid;
-  grid-template-rows: 13.5rem auto;
+  grid-template-rows: 13.5rem 1fr;
+  height: 100%;
   min-width: 0;
   overflow: hidden;
   scroll-snap-align: start;
@@ -773,14 +792,22 @@ p {
 }
 
 .event-content {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-4);
-  align-content: start;
   padding: var(--space-6);
 }
 
 .event-content > p {
   color: var(--color-muted);
+}
+
+.event-description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .event-tag {

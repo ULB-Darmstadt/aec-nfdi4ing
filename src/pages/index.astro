@@ -1,7 +1,7 @@
 ---
 import { ACTION_ERROR_CODES } from "astro:actions";
 import { faLinkedin, faOrcid } from "@fortawesome/free-brands-svg-icons";
-import { Globe } from "lucide-astro";
+import { Globe, MapPin } from "lucide-astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import activitiesJson from "../data/home/activities.json";
 import consortiaJson from "../data/home/consortia.json";
@@ -55,6 +55,7 @@ type Event = {
     image: string;
     tag: string;
     exactDate: string;
+    location?: string;
     title: string;
     description: string;
     status: string;
@@ -253,12 +254,20 @@ const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.st
                                 <div class="event-content">
                                     <p class="event-tag">{event.tag}</p>
                                     <h3>{event.title}</h3>
-                                    <p>{event.description}</p>
-                                    <div class="event-date-wrap">
-                                        <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                            <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
-                                        </svg>
-                                        <p class="event-date">{event.exactDate}</p>
+                                    <p class="event-description">{event.description}</p>
+                                    <div class="event-meta">
+                                        <div class="event-date-wrap">
+                                            <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                                <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
+                                            </svg>
+                                            <p class="event-date">{event.exactDate}</p>
+                                        </div>
+                                        {event.location ? (
+                                            <div class="event-location-wrap">
+                                                <MapPin class="event-icon" aria-hidden="true" focusable="false" />
+                                                <p class="event-location">{event.location}</p>
+                                            </div>
+                                        ) : null}
                                     </div>
                                 </div>
                             </a>
@@ -270,12 +279,20 @@ const visibleEvents = events.filter((event) => visibleEventStatuses.has(event.st
                                 <div class="event-content">
                                     <p class="event-tag">{event.tag}</p>
                                     <h3>{event.title}</h3>
-                                    <p>{event.description}</p>
-                                    <div class="event-date-wrap">
-                                        <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                                            <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
-                                        </svg>
-                                        <p class="event-date">{event.exactDate}</p>
+                                    <p class="event-description">{event.description}</p>
+                                    <div class="event-meta">
+                                        <div class="event-date-wrap">
+                                            <svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                                <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a3 3 0 0 1 3 3v11a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V7a3 3 0 0 1 3-3h1V3a1 1 0 0 1 1-1Zm13 8H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8ZM5 6a1 1 0 0 0-1 1v1h16V7a1 1 0 0 0-1-1H5Z" fill="currentColor"></path>
+                                            </svg>
+                                            <p class="event-date">{event.exactDate}</p>
+                                        </div>
+                                        {event.location ? (
+                                            <div class="event-location-wrap">
+                                                <MapPin class="event-icon" aria-hidden="true" focusable="false" />
+                                                <p class="event-location">{event.location}</p>
+                                            </div>
+                                        ) : null}
                                     </div>
                                 </div>
                             </article>
